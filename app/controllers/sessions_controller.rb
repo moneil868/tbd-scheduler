@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       redirect_to root_url, notice: "Logged in!"
     else
       render :new
+    end
   end
 
   def destroy
