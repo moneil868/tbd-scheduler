@@ -1,0 +1,32 @@
+<h1>Courses Page</h1>
+
+<h4> List Course Codes </h4>
+
+
+<h2> Search bar </h2>
+
+<%= form_tag(courses_path, method: :get) do %>
+  <%= text_field_tag :course %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% for course in @courses %>
+        <div class='course'>
+          Course Code: <%= course.course_code %> <br/>
+          Meeting Section Code: <%= course.meeting_section_code %>
+        </div>
+        <%= link_to 'Edit', edit_course_path(course) %>
+      <% end %>
+     </tr>
+  </tbody>
+</table>

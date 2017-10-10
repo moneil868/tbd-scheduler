@@ -1,7 +1,13 @@
 class CoursesController < ApplicationController
-require "HTTParty"
 
   def index
+    @courses = Course.search(params[:course])
+
+    @courses = if params[:course]
+      Course.where('course_code LIKE ?', "%#{params[:course]}%")
+    else
+      Course.all
+    end
 
   end
 
