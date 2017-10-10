@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   delete 'logout' => 'sessions#destroy', :as => :logout
 
+  root 'courses#index'
   resources :courses
   resource :users
   resource :sessions, only: [:create]

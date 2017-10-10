@@ -5,28 +5,12 @@
 
 <h2> Search bar </h2>
 
-<%= form_tag(courses_path, method: :get) do %>
+<%= form_tag courses_path, method: :get do %>
   <%= text_field_tag :course %>
-  <%= submit_tag 'Search', name: nil %>
 <% end %>
 
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <% for course in @courses %>
-        <div class='course'>
-          Course Code: <%= course.course_code %> <br/>
-          Meeting Section Code: <%= course.meeting_section_code %>
-        </div>
-        <%= link_to 'Edit', edit_course_path(course) %>
-      <% end %>
-     </tr>
-  </tbody>
-</table>
+<% @courses.each do |course| %>
+<h3><%= course[:name] %></h3>
+<p><%= course[:code] %></p>
+<p><%= course[:description] %></p>
+<% end %>
