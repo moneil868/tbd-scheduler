@@ -8,7 +8,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <nav>
-    <%= link_to "Login", login_path %>
+    <ul>
+      <li><%= link_to "Home", courses_path %>
+    <% if current_user %>
+      <li><% link_to "Logout", :logout, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Login", login_path %></li>
+      <li><%= link_to "Signup", new_users_path %>
+    <% end %>
+    </ul>
   </nav>
 
   <body>
