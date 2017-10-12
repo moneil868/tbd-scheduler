@@ -1,13 +1,21 @@
 class Course < ApplicationRecord
-  has_many :users
+  belongs_to :user
 
   def self.search(course)
-    if course
-      where('name LIKE ?', "%#{course}%")
-    else
-      all
+    courses = []
+    response = HTTParty.get("http://localhost:4242/1.0/courses/filter?q=name:'#{course} OR +code:'#{course}&limit=100")
+    parsed_reponse = JSON.parse(response.body)
+    parsed_reponse.each do |course|
+      courses << {
+        name: course['name'],
+        code: course['code'],
+        description: course['description']
+      }
     end
+    return courses
   end
+
+
 
 
 end
