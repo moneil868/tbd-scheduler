@@ -1,0 +1,2 @@
+class CourseTime < ApplicationRecord
+end
