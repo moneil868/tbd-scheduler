@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
-  belongs_to :user
+  has_many :meeting_sections
+  has_and_belongs_to_many :users
 
   def self.search(course)
     courses = []
