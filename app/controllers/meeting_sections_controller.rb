@@ -14,7 +14,8 @@ class MeetingSectionsController < ApplicationController
       courseCode: section.course.code,
       sectionCode: section.code,
       instructors: section.instructors.pluck('name'),
-      courseTimes: course_times
+      courseTimes: course_times,
+      term: section.course.term
     }
 
   end
