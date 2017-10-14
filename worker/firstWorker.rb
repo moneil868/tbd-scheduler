@@ -9,35 +9,34 @@ while skip < 15800
 
   parsed_reponse.each do |course|
     new_course = Course.new(code: course["code"], name: course["name"], description: course["description"], department: course["department"], level: course["level"], campus: course["campus"], term: course["term"])
+
     if new_course.save!
 
-       course["meeting_sections"].each do |meeting|
-         new_meeting = new_course.meeting_sections.new(code: meeting["code"], size: meeting["size"])
+     course["meeting_sections"].each do |meeting|
+       new_meeting = new_course.meeting_sections.new(code: meeting["code"], size: meeting["size"])
 
-         if new_meeting.save!
+       if new_meeting.save!
 
-           meeting["times"].each do |time|
-             new_time = new_meeting.course_times.new(day: time["day"], start: time["start"], end: time["end"], duration: time["duration"], location: time["location"])
-             new_time.save!
-           end
-
-           meeting["instructors"].each do |instructor|
-             new_instructor = new_meeting.instructors.new(name: instructor)
-             new_instructor.save!
-           end
-
+         meeting["times"].each do |time|
+           new_time = new_meeting.course_times.new(day: time["day"], start: time["start"], end: time["end"], duration: time["duration"], location: time["location"])
+           new_time.save!
          end
 
-      end
+         meeting["instructors"].each do |instructor|
+           new_instructor = new_meeting.instructors.new(name: instructor)
+           new_instructor.save!
+         end
+
+       end
+
+    end
+
     end
 
   end
 
-
-
-
-
   skip += 100
+
 end
 
 
