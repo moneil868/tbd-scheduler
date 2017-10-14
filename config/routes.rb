@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'meeting_sections/search' => 'meeting_sections#return_meeting_section_data', :as => :search
+  get 'meeting_sections/search' => 'meeting_sections#search', :as => :search
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'login' => 'sessions#new', :as => :login
