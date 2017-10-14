@@ -10,7 +10,7 @@
 <% end %>
 
 <% @courses.each do |course| %>
-<h3><%= course[:name] %></h3>
-<p><%= course[:code] %></p>
-<p><%= course[:description] %></p>
+<h3><%= course.name %></h3>
+<p><%= course.code %></p>
+<p><%= course.description %></p>
 <% end %>
