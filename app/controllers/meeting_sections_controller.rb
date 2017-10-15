@@ -1,13 +1,22 @@
 class MeetingSectionsController < ApplicationController
 
   def search
-    section = params[:section] || nil
-    sections = []
-    sections = MeetingSection
-      .find(section) if section
+    section = MeetingSection
+      .find(params[:section])
 
-    render json: sections
+    course_times = section.course_times.map { |time| {
+      start: time.start,
+      end: time.end,
+      day: time.day
+      } }
+
+    render json: {
+      courseCode: section.course.code,
+      sectionCode: section.code,
+      instructors: section.instructors.pluck('name'),
+      courseTimes: course_times,
+      term: section.course.term
+    }
 
   end
-
 end
