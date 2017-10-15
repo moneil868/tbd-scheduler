@@ -5,32 +5,36 @@ skip = 0
 
 while skip < 15800
   response = HTTParty.get("http://localhost:4242/1.0/courses?limit=100&skip=#{skip}")
-  parsed_reponse = JSON.parse(response.body)
+  parsed_response = JSON.parse(response.body)
 
-  parsed_reponse.each do |course|
-    new_course = Course.new(code: course["code"], name: course["name"], description: course["description"], department: course["department"], level: course["level"], campus: course["campus"], term: course["term"])
+  parsed_response.each do |course|
 
-    if new_course.save!
+    if course['term'] == "2017 Fall" || course['term'] == "2018 Winter"
+      new_course = Course.new(code: course["code"], name: course["name"], description: course["description"], department: course["department"], level: course["level"], campus: course["campus"], term: course["term"])
 
-     course["meeting_sections"].each do |meeting|
-       new_meeting = new_course.meeting_sections.new(code: meeting["code"], size: meeting["size"])
+        if new_course.save!
 
-       if new_meeting.save!
+         course["meeting_sections"].each do |meeting|
 
-         meeting["times"].each do |time|
-           new_time = new_meeting.course_times.new(day: time["day"], start: time["start"], end: time["end"], duration: time["duration"], location: time["location"])
-           new_time.save!
-         end
+           new_meeting = new_course.meeting_sections.new(code: meeting["code"], size: meeting["size"])
 
-         meeting["instructors"].each do |instructor|
-           new_instructor = new_meeting.instructors.new(name: instructor)
-           new_instructor.save!
-         end
+           if new_meeting.save!
 
-       end
+             meeting["times"].each do |time|
+               new_time = new_meeting.course_times.new(day: time["day"], start: time["start"], end: time["end"], duration: time["duration"], location: time["location"])
+               new_time.save!
+             end
 
-    end
+             meeting["instructors"].each do |instructor|
+               new_instructor = new_meeting.instructors.new(name: instructor)
+               new_instructor.save!
+             end
 
+           end
+
+        end
+
+      end
     end
 
   end
