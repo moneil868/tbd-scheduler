@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :courses do
     get 'search', on: :collection
+    get 'get_data', on: :collection
   end
 
   resource :users

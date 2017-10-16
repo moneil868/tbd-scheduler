@@ -18,7 +18,26 @@ class CoursesController < ApplicationController
         'OR code ILIKE ?', "%#{course}%", "%#{course}%") if course
 
     render json: courses
+  end
 
+  def get_data
+    course = Course.find(params[:course_id])
+    meeting_sections = course.meeting_sections
+    meeting_sections_data = meeting_sections.map do |each_ms|
+      {
+        code: each_ms.code,
+        id: each_ms.id
+      }
+    end
+
+    render json: {
+      name:        course.name,
+      code:        course.code,
+      description: course.description,
+      department:  course.department,
+      ms_data:     meeting_sections_data,
+      term:        course.term
+    }
   end
 
 end
