@@ -1,22 +1,24 @@
 class CoursesController < ApplicationController
 
   def index
-    @courses = Course.search(params[:course])
+    @courses = Course.all
 
     @courses = if params[:course]
-      Course.where('course_code LIKE ?', "%#{params[:course]}%")
+      self.course_filter_search(params[:course])
     else
-      Course.all
+      @course = []
     end
+  end
+
+  def search
+    course = params[:course] || nil
+    courses = []
+    courses = Course
+      .where('name ILIKE ? '\
+        'OR code ILIKE ?', "%#{course}%", "%#{course}%") if course
+
+    render json: courses
 
   end
 
-
-  private
-
-  def course_filter_search(query)
-    response = HTTParty.get("http://localhost:4242/1.0/courses/filter?q=name:'#{query}' OR code:'#{query}'")
-
-    JSON.parse(response.body)
-  end
 end

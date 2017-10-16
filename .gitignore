@@ -15,8 +15,13 @@
 
 /node_modules
 /yarn-error.log
+/.cobalt_data/*
 
 .byebug_history
+<<<<<<< HEAD
 /public/packs
 /public/packs-test
 /node_modules
+=======
+.DS_Store
+>>>>>>> ada64e2823185c302a793900beea8ea75bced9a8
