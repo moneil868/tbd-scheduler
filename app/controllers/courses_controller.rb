@@ -23,11 +23,24 @@ class CoursesController < ApplicationController
   def get_data
     course = Course.find(params[:course_id])
     meeting_sections = course.meeting_sections
+
     meeting_sections_data = meeting_sections.map do |each_ms|
+
       {
         code: each_ms.code,
-        id: each_ms.id
+        id: each_ms.id,
       }
+
+      each_ms.course_times do |course_time|
+        {
+          day: course_time.day,
+          start: course_time.start,
+          end: course_time.end,
+          duration: course_time.duration,
+          location: course_time.location
+        }
+      end
+
     end
 
     render json: {
