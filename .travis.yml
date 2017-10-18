@@ -1,23 +1,15 @@
 language: ruby
 rvm:
-  - 2.3.1p112
+- 2.3.1p112
 before_script:
-  - bundle exec rake db:create --all
-  - bundle exec rake db:migrate
+- bundle exec rake db:create --all
+- bundle exec rake db:migrate
 script:
-  - bundle exec rake ci:tests
+- bundle exec rake ci:tests
 services:
-  - postgresql
+- postgresql
 notifications:
   email: false
 deploy:
-provider: heroku
-api_key:
-  secure: YOUR_SECURE_KEY
-app:
-  develop: YOUR_DEVELOPMENT_APP
-  master: YOUR_PRODUCTION_APP
-on:
-  repo: moneil868/tbd-scheduler
-run:
-  - "rails db:migrate"
+  api_key:
+    secure: Ca2/7HUkBXkp7EB53mlQyPfEzzgyHfMw9Ai4NBDoxxXPc3Oh0ORTHCb3AZX9pIw0uXdAk+UXNlWL7gwTty6JNRuoyryf9n5xCOUPEAAypsbUTq0Wjl+hukueqKLNH++tPwxTpxmWQZX0MIar7xYnuNSHvRUlYIsJM7b0KNUSwbGOiKdi480H+8IydT/Y8qCAarxeQBKP36D1ZNqT0q5qRJZK/hxs0iZnVTnNwTwFlCcPdI3yn1+oIKOFC5BNJF40OgRBLmXqipmZriyG2Eks9q/TKLI/gwZ/aIgJEeKU33OIlL02OgebFXlqYt7Aar6EiRR3qo9ltaEL/eZQTBcXXMS2zyjx6bZT6/Q6ZjDZuvBKxht1vkSy9bM9rUkT/7ynUVpMY1Y++neWC0q5TSILkWEeQo3df/9HhNVydF6ajnXnkIcOhDezi6fHH2lNG58wFmlnYc8j4xhoWtOsCu6azZDZ/ImiaHEYMJb1Gx3yu6vWzdsBLKKkFI16sycdISxG3KcFdx5Je5zX0VCudmxO0XM2ADmuSUohEg9z/ipMoJ9Tje3V9aiXlKks2qJEkw+sj0k9YYtAkxQACB2m+zbfm4J4J505GOWiGwife3fh3jpqiRl3LMmj+8tjCiyhTd1BgoH9YUMzQAOa3EGWTT2MuY1x+vS7xO0NTMWuf84bZys=
