@@ -16,6 +16,7 @@
 /node_modules
 /yarn-error.log
 /.cobalt_data/*
+/coverage
 
 .byebug_history
 .DS_Store
