@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
     @courses = Course.all
 
     @courses = if params[:course]
-      Course.course_filter_search(params[:course])
+      self.course_filter_search(params[:course])
     else
       @course = []
     end
@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
   def get_data
     course = Course.find(params[:course_id])
     meeting_sections = course.meeting_sections
-    meeting_sections_data = Course.get_ms_data(meeting_sections)
+    meeting_sections_data = get_ms_data(meeting_sections)
 
 
     render json: {
