@@ -9,4 +9,14 @@ class Course < ApplicationRecord
     Course.where('name ILIKE ?', query )
   end
 
+  def self.get_ms_data(meeting_sections)
+    meeting_sections.map do |each_ms|
+      {
+      code: each_ms.code,
+      id: each_ms.id,
+      course_times: get_each_course_time(each_ms)
+      }
+    end
+  end
+
 end
