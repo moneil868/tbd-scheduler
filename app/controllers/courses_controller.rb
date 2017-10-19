@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
 
   def search
     course = params[:course] || nil
-    limit = params[:limit]
+    limit = params[:limit] || 10
     courses = Course
       .where('name ILIKE ? '\
         'OR code ILIKE ?', "%#{course}%", "%#{course}%").first(limit) if course
