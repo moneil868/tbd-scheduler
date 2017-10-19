@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+<a href='https://coveralls.io/github/moneil868/tbd-scheduler?branch=master'><img src='https://coveralls.io/repos/github/moneil868/tbd-scheduler/badge.svg?branch=master' alt='Coverage Status' /></a>
+
