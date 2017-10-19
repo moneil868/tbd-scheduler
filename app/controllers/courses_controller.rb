@@ -35,7 +35,6 @@ class CoursesController < ApplicationController
     } , :status => 200
   end
 
-
   private
 
   def get_ms_data(meeting_sections)
