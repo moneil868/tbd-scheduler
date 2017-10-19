@@ -25,3 +25,4 @@ Things you may want to cover:
 
 <a href='https://coveralls.io/github/moneil868/tbd-scheduler?branch=master'><img src='https://coveralls.io/repos/github/moneil868/tbd-scheduler/badge.svg?branch=master' alt='Coverage Status' /></a>
 
+<a href='https://travis-ci.org/moneil868/tbd-scheduler.svg?branch=master'><img src='https://travis-ci.org/moneil868/tbd-scheduler.svg?branch=master' alt='Travis Build Info' /></a>
