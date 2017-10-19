@@ -21,6 +21,7 @@ class CoursesController < ApplicationController
   end
 
   def get_data
+    puts params[:course_id]
     course = Course.find(params[:course_id])
     meeting_sections = course.meeting_sections
     meeting_sections_data = get_ms_data(meeting_sections)
@@ -32,7 +33,7 @@ class CoursesController < ApplicationController
       department:  course.department,
       ms_data:     meeting_sections_data,
       term:        course.term
-    } , :status => 200
+    }
   end
 
   private
