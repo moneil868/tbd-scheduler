@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
     courses = []
     courses = Course
       .where('name ILIKE ? '\
-        'OR code ILIKE ?', "%#{course}%", "%#{course}%") if course
+        'OR code ILIKE ?', "%#{course}%", "%#{course}%").first(10) if course
 
     render json: courses
   end
